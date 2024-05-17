@@ -1,0 +1,61 @@
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Light.woff2') format('woff2'),url('../assets/fonts/SFProText-Light.woff') format('woff')
+    font-style: normal
+    font-weight: 300
+    font-display: swap
+
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Regular.woff2') format('woff2'),url('../assets/fonts/SFProText-Regular.woff') format('woff')
+    font-style: normal
+    font-weight: 400
+    font-display: swap
+
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Medium.woff2') format('woff2'),url('../assets/fonts/SFProText-Medium.woff') format('woff')
+    font-style: normal
+    font-weight: 500
+    font-display: swap
+
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Semibold.woff2') format('woff2'),url('../assets/fonts/SFProText-Semibold.woff') format('woff')
+    font-style: normal
+    font-weight: 600
+    font-display: swap
+
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Bold.woff2') format('woff2'),url('../assets/fonts/SFProText-Bold.woff') format('woff')
+    font-style: normal
+    font-weight: 700
+    font-display: swap
+
+@font-face
+    font-family: 'SF Pro Text'
+    src: url('../assets/fonts/SFProText-Heavy.woff2') format('woff2'),url('../assets/fonts/SFProText-Heavy.woff') format('woff')
+    font-style: normal
+    font-weight: 800
+    font-display: swap
+
+=sfpro($weight: r)
+    @if $weight == l
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 300
+    @if $weight == r
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 400
+    @if $weight == m
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 500
+    @if $weight == sb
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 600
+    @if $weight == b
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 700
+    @if $weight == h
+        font-family: 'SF Pro Text', sans-serif
+        font-weight: 800

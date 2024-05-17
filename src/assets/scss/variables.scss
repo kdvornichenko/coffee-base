@@ -1,0 +1,36 @@
+$black: var(--black);
+$white: var(--white);
+$grey-100: var(--grey-100);
+$grey-700: var(--grey-700);
+
+$color-background: $white;
+$color-text: $black;
+
+$trs: all 0.3s ease;
+
+// Transitions
+$cubic-io: cubic-bezier(0.52, 0.14, 0.16, 1.01);
+
+$trs: 0.3s ease !default;
+$trs-4: 0.4s $cubic-io;
+$trs-5: 0.5s $cubic-io;
+
+// Common
+$desktop: 1900px;
+$desktop-md: 1500px;
+$desktop-sm: 1280px;
+$tab: 1024px;
+$tab-sm: 767px;
+$mob: 500px;
+
+$unit: var(--unit) !default;
+$unit-2: calc(var(--unit) * 2);
+
+:root {
+    --white: #fff;
+    --grey-100: #b1b1b1;
+    --grey-700: #2b2b2b;
+    --black: #181818;
+    --color-background: var(--white);
+    --color-text: var(--black);
+}

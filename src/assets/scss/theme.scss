@@ -1,0 +1,14 @@
+[data-theme="dark"] {
+    --color-background: var(--black);
+    --color-text: var(--white);
+
+    .theme-switcher {
+        label {
+            background-color: $white;
+        }
+
+        .theme-swither__wrapper {
+            rotate: 180deg;
+        }
+    }
+}
