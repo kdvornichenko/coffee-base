@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { primaryColorPalettes, surfaceColorPallets } from "@/data/colors.data";
-import { updatePrimaryPalette, updateSurfacePalette } from "primevue/themes";
+import { updatePrimaryPalette, updateSurfacePalette } from "primevue/themes/actions";
 import { ref } from "vue";
 
 const primaryColors = ref<ColorPalette[]>(primaryColorPalettes);
