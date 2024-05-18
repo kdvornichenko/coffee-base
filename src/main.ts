@@ -1,24 +1,28 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import PrimeVue from 'primevue/config';
-
-import Button from 'primevue/button';
+import PrimeVue from "primevue/config";
+import Aura from 'primevue/themes/aura';
+import "primeicons/primeicons.css";
 
 import App from './App.vue'
 import router from './router'
-import Menubar from 'primevue/menubar';
-import Menu from 'primevue/menu';
 
 const app = createApp(App);
 
-app.use(createPinia())
-    .use(router)
-    .use(PrimeVue, {
-        unstyled: true
-    });
+app.use(PrimeVue, {
+    ripple: true,
+    // Default theme configuration
+    theme: {
+        preset: Aura,
+        options: {
+            prefix: 'p',
+            darkModeSelector: '[data-theme="dark"]',
+            cssLayer: false
+        }
+    }
+});
 
-app.component('Button', Button)
-    .component('Menu', Menu)
-    .component('Menubar ', Menubar);
+app.use(router);
+app.use(createPinia());
 
 app.mount('#app');

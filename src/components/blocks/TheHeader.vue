@@ -21,5 +21,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  padding-inline: $unit;
+
+  margin-top: 20px;
 }
 </style>
