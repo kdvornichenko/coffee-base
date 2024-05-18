@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import { useDark, useToggle } from "@vueuse/core";
 import IconsComponent from "./IconsComponent.vue";
-
-const isDark = useDark({
-  selector: "html",
-  attribute: "data-theme",
-  valueDark: "dark",
-  valueLight: "light",
-  disableTransition: false,
-});
-const toggleDark = useToggle(isDark);
+import { toggleDark } from "@/functions/darkMode";
 </script>
 
 <template>

@@ -68,4 +68,9 @@ const items = ref([
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.p-menubar {
+  width: fit-content;
+  margin-inline: auto;
+}
+</style>

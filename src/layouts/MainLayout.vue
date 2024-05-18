@@ -6,11 +6,8 @@
   </main>
 </template>
 
-<style lang="scss">
-@import "@/assets/scss/main.scss";
-
+<style scoped lang="scss">
 .container {
-  padding-inline: $unit;
-  margin-top: 20px;
+  padding-block: 40px;
 }
 </style>

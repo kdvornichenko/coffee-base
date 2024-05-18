@@ -1,0 +1,14 @@
+.container {
+    padding-inline: $unit;
+}
+
+:root {
+    --unit: 70px;
+    @media (max-width: $desktop-sm) {
+        --unit: 40px;
+    }
+
+    @media (max-width: $tab) {
+        --unit: 16px;
+    }
+}

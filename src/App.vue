@@ -9,4 +9,5 @@ import TheHeader from "@/components/blocks/TheHeader.vue";
 </template>
 
 <style lang="scss">
+@import "@/assets/scss/main.scss";
 </style>
