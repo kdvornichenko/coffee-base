@@ -3,8 +3,12 @@ import MainLayout from "@/layouts/MainLayout.vue";
 import { isDark } from "@/functions/darkMode";
 
 import { ref } from "vue";
-import { dataBase } from "@/firebase/firebase";
-import { getDoc, doc, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useRouter } from "vue-router";
 
 const email = ref<string>("");
@@ -42,39 +46,25 @@ const validateEmail = async () => {
   }
 };
 
-const checkUserExistence = async (email: string): Promise<any> => {
-  const userRef = doc(dataBase, "app", "users");
-  const docSnap = await getDoc(userRef);
-
-  if (docSnap.exists()) {
-    const usersDataValue = docSnap.data();
-
-    usersData.value = usersDataValue[email];
-
-    return usersDataValue[email] || null;
-  } else {
-    return null;
+const checkUserExistence = async (email: string): Promise<boolean> => {
+  try {
+    const methods = await fetchSignInMethodsForEmail(getAuth(), email);
+    return methods.length > 0; // Если длина массива методов больше нуля, значит пользователь существует
+  } catch (error) {
+    console.error("Error checking user existence:", error);
+    return false;
   }
 };
 
 const register = async () => {
-  try {
-    const userRef = doc(dataBase, "app", "users");
-    await setDoc(
-      userRef,
-      {
-        [email.value]: {
-          email: email.value,
-          password: password.value,
-        },
-      },
-      { merge: true }
-    );
-    console.log("User added successfully");
-    router.push("/success");
-  } catch (e) {
-    console.error("Error adding user: ", e);
-  }
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log("Registered");
+      router.push("/success");
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
 };
 
 const passwordChangeHandler = () => {
@@ -82,13 +72,15 @@ const passwordChangeHandler = () => {
   else isPasswordsSame.value = false;
 };
 
-const login = async () => {
+const login = () => {
   if (isUserExist.value === true) {
-    if (usersData.value.password === password.value) {
-      router.push("/success");
-    } else {
-      isPasswordInvalid.value = true;
-    }
+    signInWithEmailAndPassword(getAuth(), email.value, password.value)
+      .then((data) => router.push("/success"))
+      .catch((error) => {
+        if (error.message === "Firebase: Error (auth/wrong-password).") {
+          isPasswordInvalid.value = true;
+        }
+      });
   } else {
     isPasswordsSame.value === true && register();
   }
@@ -129,6 +121,7 @@ const login = async () => {
               v-model="password"
               toggleMask
               :inputStyle="widthFull"
+              :feedback="!isUserExist"
               :invalid="isPasswordInvalid"
             />
             <label for="password">Password</label>
@@ -141,6 +134,7 @@ const login = async () => {
               id="repeatPassword"
               v-model="repeatPassword"
               toggleMask
+              :feedback="false"
               :inputStyle="widthFull"
               :invalid="!isPasswordsSame"
               @input="passwordChangeHandler"
