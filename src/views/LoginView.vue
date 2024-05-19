@@ -14,9 +14,9 @@ const isEmailChecked = ref<boolean>(false);
 const isEmailValid = ref<boolean>(true);
 const isUserExist = ref<boolean>(true);
 const isPasswordsSame = ref<boolean>(true);
+const isPasswordInvalid = ref<boolean>(false);
 const isLoginButtonDisabled = ref<boolean>(false);
 const usersData = ref<any>(null);
-const isPasswordInvalid = ref<boolean>(false);
 
 const router = useRouter();
 const widthFull = { width: "100%" };
@@ -90,7 +90,7 @@ const login = async () => {
       isPasswordInvalid.value = true;
     }
   } else {
-    register();
+    isPasswordsSame.value === true && register();
   }
 };
 </script>
