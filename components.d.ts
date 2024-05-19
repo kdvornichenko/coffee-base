@@ -13,6 +13,7 @@ declare module 'vue' {
     FloatLabel: typeof import('primevue/floatlabel')['default']
     IconField: typeof import('primevue/iconfield')['default']
     IconsComponent: typeof import('./src/components/IconsComponent.vue')['default']
+    InputGroup: typeof import('primevue/inputgroup')['default']
     InputIcon: typeof import('primevue/inputicon')['default']
     InputText: typeof import('primevue/inputtext')['default']
     LogoComponent: typeof import('./src/components/LogoComponent.vue')['default']

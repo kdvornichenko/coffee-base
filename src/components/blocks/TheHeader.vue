@@ -38,6 +38,7 @@ import SwitcherComponent from "../ThemeSwitcherComponent.vue";
 .header__right {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   column-gap: 20px;
 }
 </style>
