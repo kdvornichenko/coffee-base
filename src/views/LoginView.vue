@@ -3,6 +3,9 @@ import MainLayout from "@/layouts/MainLayout.vue";
 import { isDark } from "@/functions/darkMode";
 
 import { ref } from "vue";
+import { dataBase } from "@/firebase/firebase";
+import { getDoc, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "vue-router";
 
 const email = ref<string>("");
 const password = ref<string>("");
@@ -10,7 +13,12 @@ const repeatPassword = ref<string>("");
 const isEmailChecked = ref<boolean>(false);
 const isEmailValid = ref<boolean>(true);
 const isUserExist = ref<boolean>(true);
+const isPasswordsSame = ref<boolean>(true);
+const isLoginButtonDisabled = ref<boolean>(false);
+const usersData = ref<any>(null);
+const isPasswordInvalid = ref<boolean>(false);
 
+const router = useRouter();
 const widthFull = { width: "100%" };
 
 const emailChangeHanler = () => {
@@ -21,22 +29,69 @@ const emailChangeHanler = () => {
   }
 };
 
-const validateEmail = () => {
+const validateEmail = async () => {
   const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   isEmailChecked.value = true;
   if (emailPattern.test(email.value)) {
     // Проверка существования пользователя
-    isUserExist.value = checkUserExistence(email.value);
+    const userExists = await checkUserExistence(email.value);
+    isUserExist.value = !!userExists;
     isEmailValid.value = true;
   } else {
     isEmailValid.value = false;
   }
 };
 
-const checkUserExistence = (email: string): boolean => {
-  // Здесь должна быть реальная проверка, например, запрос к серверу.
-  // Для демонстрации считаем, что пользователь существует, если email заканчивается на "exist.com".
-  return email.endsWith("admin@admin.com");
+const checkUserExistence = async (email: string): Promise<any> => {
+  const userRef = doc(dataBase, "app", "users");
+  const docSnap = await getDoc(userRef);
+
+  if (docSnap.exists()) {
+    const usersDataValue = docSnap.data();
+
+    usersData.value = usersDataValue[email];
+
+    return usersDataValue[email] || null;
+  } else {
+    return null;
+  }
+};
+
+const register = async () => {
+  try {
+    const userRef = doc(dataBase, "app", "users");
+    await setDoc(
+      userRef,
+      {
+        [email.value]: {
+          email: email.value,
+          password: password.value,
+        },
+      },
+      { merge: true }
+    );
+    console.log("User added successfully");
+    router.push("/success");
+  } catch (e) {
+    console.error("Error adding user: ", e);
+  }
+};
+
+const passwordChangeHandler = () => {
+  if (password.value === repeatPassword.value) isPasswordsSame.value = true;
+  else isPasswordsSame.value = false;
+};
+
+const login = async () => {
+  if (isUserExist.value === true) {
+    if (usersData.value.password === password.value) {
+      router.push("/success");
+    } else {
+      isPasswordInvalid.value = true;
+    }
+  } else {
+    register();
+  }
 };
 </script>
 
@@ -54,7 +109,7 @@ const checkUserExistence = (email: string): boolean => {
                 v-model="email"
                 :style="widthFull"
                 :invalid="isEmailChecked && !isEmailValid"
-                v-on:input="emailChangeHanler"
+                @input="emailChangeHanler"
               />
               <label for="email">E-mail</label>
             </FloatLabel>
@@ -74,6 +129,7 @@ const checkUserExistence = (email: string): boolean => {
               v-model="password"
               toggleMask
               :inputStyle="widthFull"
+              :invalid="isPasswordInvalid"
             />
             <label for="password">Password</label>
           </FloatLabel>
@@ -86,9 +142,17 @@ const checkUserExistence = (email: string): boolean => {
               v-model="repeatPassword"
               toggleMask
               :inputStyle="widthFull"
+              :invalid="!isPasswordsSame"
+              @input="passwordChangeHandler"
             />
             <label for="repeatPassword">Repeat Password</label>
           </FloatLabel>
+          <Button
+            v-if="isEmailChecked && isEmailValid"
+            @click="login"
+            :disabled="isLoginButtonDisabled"
+            :label="isEmailChecked && isEmailValid && isUserExist ? 'Login' : 'Register'"
+          />
         </form>
       </div>
       <div class="auth__part auth__part--services">
