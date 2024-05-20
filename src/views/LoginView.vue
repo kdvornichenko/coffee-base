@@ -2,12 +2,14 @@
 import MainLayout from "@/layouts/MainLayout.vue";
 import { isDark } from "@/functions/darkMode";
 
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import {
   createUserWithEmailAndPassword,
   fetchSignInMethodsForEmail,
   getAuth,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  type Auth,
 } from "firebase/auth";
 import { useRouter } from "vue-router";
 
@@ -20,10 +22,23 @@ const isUserExist = ref<boolean>(true);
 const isPasswordsSame = ref<boolean>(true);
 const isPasswordInvalid = ref<boolean>(false);
 const isLoginButtonDisabled = ref<boolean>(false);
-const usersData = ref<any>(null);
+const isLoggedIn = ref<boolean>(false);
 
 const router = useRouter();
 const widthFull = { width: "100%" };
+
+let auth: Auth;
+
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  });
+});
 
 const emailChangeHanler = () => {
   if (isEmailChecked.value === true && isEmailValid.value === true) {
@@ -59,8 +74,7 @@ const checkUserExistence = async (email: string): Promise<boolean> => {
 const register = async () => {
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
-      console.log("Registered");
-      router.push("/success");
+      router.push("/profile");
     })
     .catch((error) => {
       console.error(error.message);
@@ -75,10 +89,17 @@ const passwordChangeHandler = () => {
 const login = () => {
   if (isUserExist.value === true) {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
-      .then((data) => router.push("/success"))
+      .then((data) => {
+        router.push("/profile");
+      })
       .catch((error) => {
-        if (error.message === "Firebase: Error (auth/wrong-password).") {
-          isPasswordInvalid.value = true;
+        switch (error.code) {
+          case "auth/wrong-password":
+            isPasswordInvalid.value = true;
+            break;
+          default:
+            alert("Ooops something goes wrong :(");
+            break;
         }
       });
   } else {

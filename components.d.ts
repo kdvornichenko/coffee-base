@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('primevue/button')['default']
     ColorSwitchComponent: typeof import('./src/components/ColorSwitchComponent.vue')['default']
+    CTA: typeof import('./src/components/blocks/CTA.vue')['default']
     Fieldset: typeof import('primevue/fieldset')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
     IconField: typeof import('primevue/iconfield')['default']
@@ -23,6 +24,7 @@ declare module 'vue' {
     RadioButton: typeof import('primevue/radiobutton')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SignOutBtn: typeof import('./src/components/SignOutBtn.vue')['default']
     SwitcherComponent: typeof import('./src/components/SwitcherComponent.vue')['default']
     TheHeader: typeof import('./src/components/blocks/TheHeader.vue')['default']
     ThemeSwitcherComponent: typeof import('./src/components/ThemeSwitcherComponent.vue')['default']
