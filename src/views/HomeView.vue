@@ -6,7 +6,11 @@ import MainLayout from "@/layouts/MainLayout.vue";
 
 <template>
   <MainLayout>
-    <CTA tag="h1" text="Effective english courses for kids and teenagers" />
+    <CTA
+      tag="h1"
+      title="Effective english courses for kids and teenagers"
+      text="With professional teachers, flexible learning schedules and courses for all levels you will speak confidently in no time."
+    />
   </MainLayout>
 </template>
 

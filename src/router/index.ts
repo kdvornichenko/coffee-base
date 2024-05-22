@@ -2,6 +2,16 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
+document.addEventListener('DOMContentLoaded', (e) => {
+  const app = document.querySelector('#app');
+  const preloader = document.querySelector('.preloader');
+
+  setTimeout(() => {
+    app?.classList.add('is-loaded');
+    preloader?.classList.add('is-loaded');
+  }, 1500);
+});
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [

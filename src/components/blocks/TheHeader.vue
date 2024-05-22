@@ -48,6 +48,8 @@ checkCurrentUser();
   padding-inline: $unit;
 
   margin-top: 20px;
+  transition: $trs;
+  opacity: 0;
 }
 
 .header__right {

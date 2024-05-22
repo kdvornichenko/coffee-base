@@ -5,6 +5,7 @@ const headingTag = ref<string | undefined>("div");
 
 const props = defineProps({
   tag: String,
+  title: String,
   text: String,
 });
 
@@ -14,7 +15,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <headingTag> {{ props.text }} </headingTag>
+  <headingTag> {{ props.title }} </headingTag>
+  <p>{{ props.text }}</p>
+  <form>
+    <input type="email" placeholder="Email" />
+  </form>
 </template>
 
 <style scoped lang="scss"></style>
