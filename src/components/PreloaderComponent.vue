@@ -18,6 +18,7 @@ import LogoImg from "@/assets/img/logo.jpg";
   width: 100vw;
   height: 100vh;
   z-index: 1000;
+  pointer-events: none;
   &.is-loaded {
     .preloader__wrapper {
       &:first-child {
