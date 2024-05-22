@@ -5,7 +5,7 @@ import PreloaderComponent from "@/components/PreloaderComponent.vue";
 </script>
 
 <template>
-  <PreloaderComponent />
+  <!-- <PreloaderComponent /> -->
   <TheHeader />
   <RouterView />
 </template>

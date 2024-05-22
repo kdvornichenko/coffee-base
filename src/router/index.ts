@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   setTimeout(() => {
     app?.classList.add('is-loaded');
     preloader?.classList.add('is-loaded');
-  }, 1500);
+  }, 0);
 });
 
 const router = createRouter({

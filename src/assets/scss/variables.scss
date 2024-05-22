@@ -32,6 +32,7 @@ $unit-2: calc(var(--unit) * 2);
     --grey-700: #2b2b2b;
     --black: #181818;
     --color-background: var(--white);
-    --color-text: var(--black);
+    --color-text: #73737b;
+    --color-text-dark: var(--black);
     --unit: 70px;
 }
