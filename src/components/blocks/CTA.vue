@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
-const headingTag = ref<string>("div");
+const headingTag = ref<string | undefined>("div");
 
 const props = defineProps({
   tag: String,
