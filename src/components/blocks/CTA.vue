@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
-const headingTag = ref<string | undefined>("div");
+const email = ref<string>("");
 
 const props = defineProps({
   img: String,
-  tag: String,
-  text: String,
   btn: String,
-});
-
-onMounted(() => {
-  headingTag.value = props.tag;
 });
 </script>
 
@@ -20,14 +14,26 @@ onMounted(() => {
     <div class="cta__img">
       <img :src="img" alt="Hero" />
     </div>
+
     <div class="cta__content">
-      <headingTag class="h1 cta__heading">
-        <slot name="title"></slot>
-      </headingTag>
-      <p class="body-text">{{ props.text }}</p>
-      <form>
-        <input type="email" placeholder="Email" />
-        <Button :label="props.btn" />
+      <div class="h1 cta__heading">
+        <slot name="title" />
+      </div>
+      <p class="body-text">
+        <slot name="text" class="body-text" />
+      </p>
+
+      <form class="cta__form">
+        <div class="cta__form-content">
+          <div class="cta__form-input_wrapper">
+            <InputText id="username" type="email" v-model="email" placeholder=" " />
+            <label for="email">
+              <InputIcon class="pi pi-envelope" />
+              <span>Email</span>
+            </label>
+          </div>
+          <Button :label="props.btn" class="cta__form-btn" />
+        </div>
       </form>
     </div>
   </div>
@@ -45,6 +51,45 @@ onMounted(() => {
   color: var(--color-text-dark);
 }
 
-.cta__content {
+.cta__form {
+  .cta__form-input_wrapper input,
+  .cta__form-btn {
+    height: 50px;
+  }
+
+  .cta__form-input_wrapper {
+    position: relative;
+
+    input {
+      &:focus,
+      &:not(:placeholder-shown),
+      &:-webkit-autofill {
+        & + label {
+          opacity: 0;
+        }
+      }
+    }
+
+    label {
+      position: absolute;
+      top: 50%;
+      left: var(--p-inputtext-padding-x);
+
+      translate: 0 -50%;
+
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+
+      opacity: 0.5;
+
+      transition: $trs;
+    }
+  }
+}
+
+.cta__form-content {
+  display: flex;
+  column-gap: 15px;
 }
 </style>
