@@ -21,6 +21,7 @@ declare module 'vue' {
     Menubar: typeof import('primevue/menubar')['default']
     NavComponent: typeof import('./src/components/NavComponent.vue')['default']
     Password: typeof import('primevue/password')['default']
+    PictureComponent: typeof import('./src/components/PictureComponent.vue')['default']
     PreloaderComponent: typeof import('./src/components/PreloaderComponent.vue')['default']
     RadioButton: typeof import('primevue/radiobutton')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

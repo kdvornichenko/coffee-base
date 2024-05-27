@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import PictureComponent from "../PictureComponent.vue";
 
 const email = ref<string>("");
 
@@ -12,7 +13,7 @@ const props = defineProps({
 <template>
   <div class="cta">
     <div class="cta__img">
-      <img :src="img" alt="Hero" />
+      <PictureComponent :src="img" />
     </div>
 
     <div class="cta__content">
@@ -42,7 +43,8 @@ const props = defineProps({
 <style scoped lang="scss">
 .cta {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 600px 1fr;
+  column-gap: 120px;
   align-items: center;
   justify-content: space-between;
 }

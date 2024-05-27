@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import CTA from "@/components/blocks/CTA.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
-import HeroImg from "@/assets/img/hero.png";
+import { ref } from "vue";
 </script>
 
 <template>
   <MainLayout>
-    <CTA btn="Get Started" :img="HeroImg">
+    <CTA btn="Get Started" img="hero">
       <template v-slot:title>
-        Effective english courses for teenagers (hate <span>kids</span>)
+        Effective english courses for teenagers (hate
+        <span>kids</span>)
       </template>
       <template v-slot:text>
         With professional teachers, flexible learning schedules and courses for all levels
