@@ -2,6 +2,13 @@
     padding-inline: $unit;
 }
 
+.container--block {
+    padding-block: 100px;
+    @media (max-width: $tab-sm) {
+        padding-block: 50px;
+    }
+}
+
 :root {
     --unit: 70px;
     @media (max-width: $desktop-sm) {

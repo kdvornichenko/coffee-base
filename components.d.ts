@@ -7,6 +7,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Advantages: typeof import('./src/components/blocks/Advantages.vue')['default']
+    AdvantagesCard: typeof import('./src/components/AdvantagesCard.vue')['default']
+    AdvantagesItem: typeof import('./src/components/AdvantagesItem.vue')['default']
     Button: typeof import('primevue/button')['default']
     ColorSwitchComponent: typeof import('./src/components/ColorSwitchComponent.vue')['default']
     CTA: typeof import('./src/components/blocks/CTA.vue')['default']

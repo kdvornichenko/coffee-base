@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="cta">
+  <div class="cta container--block">
     <div class="cta__img">
       <PictureComponent :src="img" />
     </div>
@@ -20,7 +20,7 @@ const props = defineProps({
       <div class="h1 cta__heading">
         <slot name="title" />
       </div>
-      <p class="body-text">
+      <p class="cta__text body-text">
         <slot name="text" class="body-text" />
       </p>
 
@@ -42,18 +42,31 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .cta {
-  display: grid;
-  grid-template-columns: 600px 1fr;
+  display: flex;
   column-gap: 120px;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: $tab) {
+    flex-direction: column-reverse;
+  }
+}
+
+.cta__img {
+  width: 100%;
+  max-width: 600px;
 }
 
 .cta__heading {
   color: var(--color-text-dark);
 }
 
+.cta__text {
+  margin-top: 24px;
+}
+
 .cta__form {
+  margin-top: 50px;
+
   .cta__form-input_wrapper input,
   .cta__form-btn {
     height: 50px;
@@ -61,6 +74,9 @@ const props = defineProps({
 
   .cta__form-input_wrapper {
     position: relative;
+    @media (max-width: $mob) {
+      width: 100%;
+    }
 
     input {
       &:focus,
@@ -69,6 +85,10 @@ const props = defineProps({
         & + label {
           opacity: 0;
         }
+      }
+
+      @media (max-width: $mob) {
+        width: 100%;
       }
     }
 
@@ -92,6 +112,9 @@ const props = defineProps({
 
 .cta__form-content {
   display: flex;
-  column-gap: 15px;
+  gap: 15px;
+  @media (max-width: $mob) {
+    flex-direction: column;
+  }
 }
 </style>

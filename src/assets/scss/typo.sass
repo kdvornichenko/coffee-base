@@ -2,7 +2,33 @@
     +yo('font-size', ($mob: 30px, $desktop-md: 70px))
     +yo('line-height', ($mob: 40px, $desktop-md: 80px))
     font-weight: 600
+    font-size: 30px
+    line-height: 35px
+
+.h2
+    +yo('font-size', ($mob: 24px, $desktop-md: 50px))
+    +yo('line-height', ($mob: 30px, $desktop-md: 60px))
+    font-weight: 600
+    font-size: 24px
+    line-height: 30px
+
+.h3
+    +yo('font-size', ($mob: 18px, $desktop-md: 24px))
+    +yo('line-height', ($mob: 24px, $desktop-md: 30px))
+    font-weight: 600
+    font-size: 18px
+    line-height: 24px
 
 .body-text
     font-size: 24px
     line-height: 30px
+    @media (max-width: $mob)
+        font-size: 18px
+        line-height: 24px
+
+.body-text--small
+    font-size: 16px
+    line-height: 24px
+    @media (max-width: $mob)
+        font-size: 14px
+        line-height: 20px

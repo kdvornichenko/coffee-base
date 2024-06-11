@@ -11,7 +11,8 @@ import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3000,
+    host: true,
+    port: 8080,
   },
   plugins: [
     vue(),
