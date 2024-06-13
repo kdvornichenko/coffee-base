@@ -1,5 +1,5 @@
-type AdvantagessItem = {
+export interface AdvantagesItem {
     img: string;
-    title: string,
-    description: string
+    title: string;
+    description: string;
 };

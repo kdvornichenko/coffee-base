@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconsComponent from "./IconsComponent.vue";
+import SvgComponent from "./SvgComponent.vue";
 import { toggleDark } from "@/functions/darkMode";
 </script>
 
@@ -9,10 +9,10 @@ import { toggleDark } from "@/functions/darkMode";
       <input type="checkbox" name="switcher" @change="toggleDark()" />
       <div class="theme-swither__wrapper">
         <span class="theme-switcher__moon">
-          <IconsComponent name="moon" />
+          <SvgComponent name="moon" />
         </span>
         <span class="theme-switcher__sun">
-          <IconsComponent name="sun" />
+          <SvgComponent name="sun" />
         </span>
       </div>
     </label>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { AdvantagesItem } from "@/types/advantagesItem";
 import PictureComponent from "./PictureComponent.vue";
+import { useHtmlDecoder } from "@/hooks/useHtmlDecoder";
 
-const props = defineProps({
-  img: String,
-  title: String,
-  description: String,
-});
+const props = defineProps<AdvantagesItem>();
+
+const decodedDescription = useHtmlDecoder(props.description);
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const props = defineProps({
     </div>
     <div class="h3 advantages__item-title">{{ props.title }}</div>
     <div class="bod-text--small advantages__item-description">
-      {{ props.description }}
+      {{ decodedDescription }}
     </div>
   </div>
 </template>

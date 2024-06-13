@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import AdvantagesItem from "../AdvantagesItem.vue";
+import type { AdvantagesItem } from "@/types/advantagesItem";
+import AdvantagesItemComponent from "../AdvantagesItemComponent.vue";
 
-const advantagesItems: AdvantagessItem[] = [
+const advantagesItems: AdvantagesItem[] = [
   {
     img: "advantages1",
     title: "1. Verified teachers",
     description:
-      "Our community has over 10,000 expert tutors – all with prior teaching experience, vetted by our team.",
+      "Our community has over 10,000 expert tutors&nbsp;&mdash; all with prior teaching experience, vetted by&nbsp;our team.",
   },
   {
     img: "advantages2",
     title: "2. Affordable lessons",
     description:
-      "With lesson prices starting at $20, Verbling provides remote language learning to fit any budget.",
+      "With lesson prices starting at&nbsp;$20, Verbling provides remote language learning to&nbsp;fit any budget.",
   },
   {
     img: "advantages3",
     title: "3.Convenience & flexibility",
     description:
-      "We make learning happen on your schedule. Book lessons whenever you want to learn.",
+      "We&nbsp;make learning happen on&nbsp;your schedule. Book lessons whenever you want to&nbsp;learn.",
   },
 ];
 </script>
@@ -35,7 +36,7 @@ const advantagesItems: AdvantagessItem[] = [
 
     <div class="advantages__items">
       <div v-for="(item, index) in advantagesItems">
-        <AdvantagesItem
+        <AdvantagesItemComponent
           :key="index"
           :img="item.img"
           :title="item.title"

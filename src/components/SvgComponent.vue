@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import * as icons from "../assets/icons";
+import * as svg from "../assets/img/svg";
 
 const props = defineProps<{
-  name: keyof typeof icons;
+  name: keyof typeof svg;
 }>();
 
 const icon = computed(() => {
-  return icons[props.name];
+  return svg[props.name];
 });
 </script>
 

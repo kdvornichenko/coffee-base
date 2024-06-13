@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CTA from "@/components/blocks/CTA.vue";
+import CTACard from "@/components/blocks/CTACard.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 </script>
 
@@ -17,6 +18,7 @@ import MainLayout from "@/layouts/MainLayout.vue";
     </CTA>
 
     <Advantages />
+    <CTACard />
   </MainLayout>
 </template>
 
