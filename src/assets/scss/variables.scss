@@ -1,7 +1,9 @@
 $black: var(--black);
 $white: var(--white);
 $grey-100: var(--grey-100);
+$grey-500: var(--grey-500);
 $grey-700: var(--grey-700);
+$bg: var(--color-background);
 
 $color-background: $white;
 $color-text: $black;
@@ -29,6 +31,7 @@ $unit-2: calc(var(--unit) * 2);
 :root {
     --white: #fff;
     --grey-100: #b1b1b1;
+    --grey-500: #777777;
     --grey-700: #2b2b2b;
     --black: #181818;
     --color-background: var(--white);

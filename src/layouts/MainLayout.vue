@@ -12,8 +12,4 @@ main {
   opacity: 0;
   transition: $trs;
 }
-
-.container {
-  padding-block: 40px;
-}
 </style>

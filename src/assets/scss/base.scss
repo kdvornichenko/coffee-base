@@ -1,5 +1,5 @@
 a {
-    color: var(--color-text);
+    color: var(--color-text-dark);
     transition: $trs;
 }
 
@@ -12,7 +12,7 @@ h4 {
 }
 
 body {
-    background-color: var(--color-background);
+    background-color: $bg;
 
     min-height: 100vh;
     color: var(--color-text);

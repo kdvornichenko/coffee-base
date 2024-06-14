@@ -63,7 +63,15 @@ const advantagesItems: AdvantagesItem[] = [
 }
 
 .advantages__items {
-  margin-top: 60px;
+  margin-top: 30px;
+
+  @include yo(
+    "margin-top",
+    (
+      $mob: 30px,
+      $desktop-md: 60px,
+    )
+  );
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);

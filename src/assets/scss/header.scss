@@ -1,0 +1,25 @@
+.header {
+    .p-menubar-item {
+        &:has(.theme-switcher) {
+            .p-menubar-item-content {
+                width: fit-content;
+                margin-right: auto;
+                padding: var(--p-menubar-item-padding);
+            }
+
+            .p-menubar-item-link {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 960px) {
+        .p-menubar-button {
+            margin-left: auto;
+        }
+
+        .p-menubar-end {
+            display: none;
+        }
+    }
+}

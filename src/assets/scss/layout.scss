@@ -3,10 +3,15 @@
 }
 
 .container--block {
-    padding-block: 100px;
-    @media (max-width: $tab-sm) {
-        padding-block: 50px;
-    }
+    padding-block: 50px;
+
+    @include yo(
+        "padding-block",
+        (
+            $mob: 50px,
+            $desktop-md: 100px
+        )
+    );
 }
 
 :root {

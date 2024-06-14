@@ -19,15 +19,11 @@ const logoImg = LogoImg;
   border-radius: 100%;
   overflow: hidden;
   transition: $trs;
+
   img {
     object-fit: cover;
     object-position: center;
     width: 100%;
-  }
-  &:hover {
-    scale: 4;
-    transform-origin: top left;
-    border-radius: 10px;
   }
 }
 </style>
